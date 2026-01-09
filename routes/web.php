@@ -18,4 +18,8 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('users', UsersController::class);
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/audits', [App\Http\Controllers\AuditController::class, 'index'])->name('audits.index');
+    });
 });
+
